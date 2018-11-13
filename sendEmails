@@ -1,6 +1,6 @@
 
 //source code for redirecting Google form submissions to auto-assign technicians on Manage Engine
-//Written in G-Apps script
+//Written in G-Apps script for Sheets.
 
 function redirectEmails(e)
 {//method starts here
@@ -18,13 +18,13 @@ var message - "" ;
 
 if(category=="Printers")
 {
-  subject = "@@@Wifi Issue"
-  message+= '@@@REQUESTOREMAIL=' + requestor + '@@\n'
-  message+= '@@@TECHNICIAN=printerhelp@email.com@@\n'  //change email to technician's email
-  message+= '@@@MODE = Web Form@@\n'
-  message+= problem;   
+  subject = "@@@Wifi Issue" //the @@@ is the delimiter set up has to match Manage Engine admin.
+  message+= '@@@REQUESTOREMAIL=' + requestor + '@@\n' //sent by gets converted to sender email. Sender gets auto-confirmation.
+  message+= '@@@TECHNICIAN=printerhelp@email.com@@\n'  //change email to specific technician's email
+  message+= '@@@MODE = Web Form@@\n' //Manage Engine category to check how many requests came in via the Form.
+  message+= problem;   //append problem identified by user
 }
-//more such if conditions can be added for different categories with different technicians
+//more such IF conditions can be added for different categories with different technicians
 
 //Send emails
 MailApp.sendMail("helpdesk@youremail.domain",subject,message);
